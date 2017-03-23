@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
-import MemeRoomHeader from './MemeRoomHeader';
-import GameDisplay from './GameDisplay';
+import MemeRoomHeader from './MemeRoomHeader.jsx';
+import GameDisplay from './GameDisplay.jsx';
 
 const MemeRoom = (props) => {
   return (

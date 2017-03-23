@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
+import { connect } from 'react-redux'
 import {
   BrowserRouter as Router,
   Route,
@@ -8,16 +9,15 @@ import {
 } from 'react-router-dom';
 import io from 'socket.io-client';
 
-
 /* Components */
-import Navigation from './Navigation';
-import Home from '../Pages/HomeContainer';
-import Dashboard from '../Pages/DashboardContainer';
-import MemeRoomContainer from '../Pages/MemeRoomContainer';
-import LoginPage from '../Pages/Login';
+import Navigation from './Navigation.jsx';
+import Home from '../Pages/HomeContainer.jsx';
+import Dashboard from '../Pages/DashboardContainer.jsx';
+import MemeRoomContainer from '../Pages/MemeRoomContainer.jsx';
+import LoginPage from '../Pages/Login.jsx';
 
 /* Auth0 Service */
-import AuthService from '../../utils/AuthService';
+import AuthService from '../../utils/AuthService.js';
 
 /* Socket.IO Connection */
 const socket = io('http://localhost:3000');
@@ -52,6 +52,11 @@ function alreadyLoggedIn(nextState, replaceState) {
     replaceState({ nextPathname: nextState.location.pathname }, '/dashboard')
 }
 
+import { actions } from '../redux/lesson'
+
+@connect(store => ({
+  mounted: store.lesson.mounted,
+}))
 class App extends Component {
   constructor(props) {
     super(props);
@@ -79,6 +84,10 @@ class App extends Component {
   }
   componentDidMount() {
     this.getUsersProfile();
+    var _t = this;
+    setTimeout(function() {
+      _t.props.dispatch(actions.dispatchMountAction())
+    }, 1500);
   }
   componentWillUpdate(nextProps, nextState) {
     console.log(nextState);
@@ -118,6 +127,7 @@ class App extends Component {
     return (
       <Router>
         <Grid fluid>
+          {this.props.mounted ? "mounted" : "not mounted"}
           <Navigation />
           <Row>
             <Col xs={12} md={8} mdOffset={1}>

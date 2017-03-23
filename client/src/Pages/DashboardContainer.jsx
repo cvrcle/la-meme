@@ -3,8 +3,8 @@ import { Redirect } from 'react-router-dom';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
 import { default as swal } from 'sweetalert2';
 
-import AlertsContainer from '../components/alerts/AlertsContainer';
-import Dashboard from '../components/Dashboard';
+import AlertsContainer from '../components/alerts/AlertsContainer.jsx';
+import Dashboard from '../components/Dashboard.jsx';
 
 class DashboardContainer extends Component {
   constructor(props) {

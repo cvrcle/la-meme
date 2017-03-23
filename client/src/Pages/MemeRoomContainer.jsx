@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MemeRoom from '../components/MemeRoom';
+import MemeRoom from '../components/MemeRoom.jsx';
 
   /**
    * memePhotoCopy used to continue showing photo while the next photo is getting fetched 

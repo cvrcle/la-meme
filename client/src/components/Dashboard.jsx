@@ -1,8 +1,8 @@
 import React from 'react';
 import { Col, Panel, Row, Image, Button } from 'react-bootstrap';
 
-import PlayerTable from './PlayerTable';
-import RoomsTable from './RoomsTable';
+import PlayerTable from './PlayerTable.jsx';
+import RoomsTable from './RoomsTable.jsx';
 
 const Dashboard = (props) => {
   const userProfile = props.profile ? props.profile : {};

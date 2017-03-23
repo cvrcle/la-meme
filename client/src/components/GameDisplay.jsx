@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Well, Col, Image } from 'react-bootstrap';
-import GameInput from './GameInput';
+import GameInput from './GameInput.jsx';
 
 class GameDisplay extends Component {
   constructor(props) {

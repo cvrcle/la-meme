@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Panel, Collapse } from 'react-bootstrap';
 
-import NewUserJoinedAlert from './NewUserJoined';
+import NewUserJoinedAlert from './NewUserJoined.jsx';
 
 class AlertsContainer extends Component {
   constructor(props) {
