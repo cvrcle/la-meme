@@ -5,13 +5,33 @@ const db = require('../models/index.js');
 module.exports = {
   users: {
     get: (req, res) => {
-      res.end();
+      Users.find({}, (err, result) => {
+        if (err) {
+          throw err;
+          res.status(404);
+        } else {
+          console.log('successful user get');
+          res.status(200).send(result);
+        }
+      })
+      // res.end();
     },
     getById: (req, res) => {
       res.end();
     },
     post: (req, res) => {
-      console.log(req.body);
+      let newUser = newUser(req.body);
+      newUser.save((err, data) => {
+        if (err) {
+          throw err;
+        } else {
+          console.log('successful user post');
+          res.status(201);
+          res.json({
+          })
+        }
+      })
+      // console.log(req.body);
       res.end();
     },
   },

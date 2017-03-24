@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Well, Col, Image } from 'react-bootstrap';
-import GameInput from './GameInput.jsx';
+import { Well, Col, Image, Button } from 'react-bootstrap';
+import GameInput from './GameInput';
 
 class GameDisplay extends Component {
   constructor(props) {
@@ -9,6 +9,7 @@ class GameDisplay extends Component {
       gameInput: ''
     };
   }
+
   setGameInput(caption) {
     console.log('fired from game input');
     // send socket.io
@@ -20,6 +21,8 @@ class GameDisplay extends Component {
     this.setState({ gameInput: caption });
     console.log(this.state.gameInput);
   }
+
+
   render() {
     return (
       <div>
@@ -33,17 +36,23 @@ class GameDisplay extends Component {
         </Col>
 
         <Well className="meme-content" bsSize="large">
+          { this.props.winner.length ? 
+            <div className="winner-display">The winner is: {this.props.winner}</div> :
+            ''
+          }
           <div id="display-meme" className="meme-display">
             <Col xs={6} md={4}>
               <Image className="meme" src={this.props.memePhotoCopy} />
-                <div className="caption">{this.state.gameInput}
-              </div>
+              <div className="caption">{this.state.gameInput}</div>
+              <Button className="voting-btn" onClick={()=>this.props.player1vote()}>Vote</Button>
             </Col>
 
             <Col xs={6} md={4}>
               <Image className="meme" src={this.props.memePhotoCopy} />
               <div className="caption">{this.props.player2Caption}
               </div>
+              <Button className="voting-btn" onClick={()=>this.props.player2vote()}>Vote</Button>
+              
             </Col>
             {/* <ul id="messages" />*/}
           </div>
