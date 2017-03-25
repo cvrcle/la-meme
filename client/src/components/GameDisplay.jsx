@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Well, Col, Image, Button } from 'react-bootstrap';
-import GameInput from './GameInput';
+import GameInput from './GameInput.jsx';
 
 class GameDisplay extends Component {
   constructor(props) {
@@ -46,7 +46,6 @@ class GameDisplay extends Component {
               <div className="caption">{this.state.gameInput}</div>
               <Button className="voting-btn" onClick={()=>this.props.player1vote()}>Vote</Button>
             </Col>
-
             <Col xs={6} md={4}>
               <Image className="meme" src={this.props.memePhotoCopy} />
               <div className="caption">{this.props.player2Caption}
