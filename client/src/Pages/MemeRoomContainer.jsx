@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import MemeRoom from '../components/MemeRoom.jsx';
 
-  /**
-   * memePhotoCopy used to continue showing photo while the next photo is getting fetched 
-   */
+/**
+ * memePhotoCopy used to continue showing photo while the next photo is getting fetched 
+ */
 class Game extends Component {
   constructor(props) {
     super(props);
@@ -15,10 +15,15 @@ class Game extends Component {
       round: 0,
       intermission: null,
       memePhoto: [],
-      memePhotoCopy: []
+      memePhotoCopy: [],
+      player1count: 0,
+      player2count: 0,
+      winner: ''
     };
     this.emitMessage = this.emitMessage.bind(this);
     this.MemePhoto = this.MemePhoto.bind(this);
+    this.player1vote = this.player1vote.bind(this);
+    this.player2vote = this.player2vote.bind(this);
   }
   componentWillMount() {
     const payload = {
@@ -187,6 +192,17 @@ class Game extends Component {
         gameOver: true
       });
     });
+    this.props.socket.on('display-winner', () => {
+      if (this.state.player1count > this.state.player2count) {
+        self.setState({
+          winner: 'Player 1'
+        })
+      } else {
+        self.setState({
+          winner: 'Player 2'
+        })
+      }
+    })
   }
   /**
    * listens for room occupancy changes from the server
@@ -199,9 +215,9 @@ class Game extends Component {
       });
     });
   }
-    /**
-   * serves up photo
-   */
+  /**
+ * serves up photo
+ */
   MemePhoto() {
     const self = this;
     this.props.socket.on('photoUrl', (photoUrl) => {
@@ -223,6 +239,7 @@ class Game extends Component {
     };
     this.socket.emit('chat-message', payload);
   }
+
   /**
    * handles rendering message to all clients ( not used as of now, maybe chat later? )
    */
@@ -232,6 +249,25 @@ class Game extends Component {
       document.getElementById('messages').innerHTML += `<li>${data.message}</li>`;
     });
   }
+
+  player1vote() {
+    let tmp = this.state.player1count;
+    tmp++
+    this.setState({
+      player1count: tmp
+    })
+    console.log('player1vote', tmp);
+  }
+
+  player2vote() {
+    let tmp = this.state.player2count
+    tmp++
+    this.setState({
+      player2count: tmp
+    })
+    console.log('player2vote', tmp);    
+  }
+
   render() {
     return (
       <MemeRoom
@@ -246,6 +282,9 @@ class Game extends Component {
         memePhotoCopy={this.state.memePhotoCopy}
         socket={this.props.socket}
         player2Caption={this.state.player2Caption}
+        player1vote={this.player1vote}
+        player2vote={this.player2vote}        
+        winner={this.state.winner}
       />
     );
   }

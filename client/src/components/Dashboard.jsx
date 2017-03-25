@@ -1,9 +1,9 @@
 import React from 'react';
 import { Col, Panel, Row, Image, Button } from 'react-bootstrap';
 
-import PlayerTable from './PlayerTable';
-import RoomsTable from './RoomsTable';
-import Dropper from './Dropper'
+import PlayerTable from './PlayerTable.jsx';
+import RoomsTable from './RoomsTable.jsx';
+import Dropper from './Dropper.jsx'
 
 
 const Dashboard = (props) => {

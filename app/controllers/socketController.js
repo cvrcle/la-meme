@@ -375,6 +375,7 @@ module.exports = {
               ioRef.to(room).emit('intermission-over');
               ioRef.to(room).emit('game-over');
               ioRef.in(room).emit('photoUrl', 'http://www.powerpointhintergrund.com/uploads/game-over-png-16.png');
+              ioRef.in(room).emit('display-winner');
               if (round === 3) {
                 clearInterval(countDown);
                 roomData.active = false;

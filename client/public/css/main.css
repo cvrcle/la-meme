@@ -124,3 +124,7 @@
   width: 400px;
   margin-bottom: 10px;
 }
+
+.voting-btn {
+  margin: auto
+}

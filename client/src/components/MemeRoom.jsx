@@ -19,6 +19,8 @@ const MemeRoom = (props) => {
       <Row className="game-board">
         <Col xs={12} md={12} >
           <GameDisplay
+            player1vote={props.player1vote}
+            player2vote={props.player2vote}
             player2Caption={props.player2Caption}
             handleMessage={props.handleMessage}
             connectionType={props.connectionType}
@@ -26,6 +28,7 @@ const MemeRoom = (props) => {
             memePhotoCopy={props.memePhotoCopy}
             socket={props.socket}
             currentRoom={props.currentRoom}
+            winner={props.winner}
           />
         </Col>
       </Row>
